@@ -1,3 +1,4 @@
 *.key
 *.env
-*.tar.gz
+.env
+.tar.gz

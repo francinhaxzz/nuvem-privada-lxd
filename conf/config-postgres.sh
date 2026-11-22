@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 APP_IP="$1"; BASE="$2"; USUARIO="$3"; SENHA="$4"
-VER=$(ls /etc/postgresql)
+VER=$(ls -1 /etc/postgresql | head -n1)
 CONF=/etc/postgresql/$VER/main
 systemctl stop postgresql
 if [ ! -d /dados/pgdata ]; then
@@ -10,7 +10,7 @@ if [ ! -d /dados/pgdata ]; then
 fi
 chown -R postgres:postgres /dados/pgdata
 chmod 700 /dados/pgdata
-sed -i "s#^data_directory.*#data_directory = '/dados/pgdata'#" $CONF/postgresql.conf
+sed -i "s/^#\?data_directory.*/data_directory = '\/dados\/pgdata'/" "$CONF/postgresql.conf"
 sed -i "s/^#\?listen_addresses.*/listen_addresses = '*'/" $CONF/postgresql.conf
 grep -q "$APP_IP" $CONF/pg_hba.conf || echo "host $BASE $USUARIO $APP_IP/32 scram-sha-256" >> $CONF/pg_hba.conf
 systemctl start postgresql

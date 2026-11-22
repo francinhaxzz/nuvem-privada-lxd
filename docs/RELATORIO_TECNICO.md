@@ -1,6 +1,11 @@
 # Relatório Técnico · Nuvem Privada com LXD/Incus
 **Disciplina:** Cloud Computing · **Curso:** Análise e Desenvolvimento de Sistemas (UNINASSAU)  
-**Projeto:** `final-equipe1` · **Trilha B:** API de Tarefas (FastAPI) + PostgreSQL
+**Trilha B:** API de Tarefas (FastAPI) + PostgreSQL  
+**Equipe:**
+- **Mateus França Toledo** — Matrícula: `01800414`
+- **Pedro Henrique de Oliveira Gomes** — Matrícula: `01810750`
+- **Ygor Lopes de Queiroz** — Matrícula: `01802997`
+- **Victor Emanuel dos Santos Brito** — Matrícula: `01807084`
 
 ---
 

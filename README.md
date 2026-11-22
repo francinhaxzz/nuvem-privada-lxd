@@ -1,7 +1,12 @@
 # Projeto Final · Cloud Computing (LXD/Incus)
 **Curso:** Análise e Desenvolvimento de Sistemas (UNINASSAU)  
-**Equipe:** 1 (`final-equipe1`)  
 **Trilha escolhida:** **Trilha B · API de tarefas (FastAPI) + PostgreSQL**
+
+### 👥 Equipe / Autores
+- **Mateus França Toledo** — Matrícula: `01800414`
+- **Pedro Henrique de Oliveira Gomes** — Matrícula: `01810750`
+- **Ygor Lopes de Queiroz** — Matrícula: `01802997`
+- **Victor Emanuel dos Santos Brito** — Matrícula: `01807084`
 
 ---
 

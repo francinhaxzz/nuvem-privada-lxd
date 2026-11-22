@@ -1,0 +1,25 @@
+--- 4.2 Teste ANTES das ACLs ---
+$ lxc exec teste-dev -- bash -c 'timeout 3 bash -c "echo > /dev/tcp/10.10.10.12/5432" && echo ALCANCOU || echo BLOQUEADO'
+ALCANCOU
+
+--- 4.4 Teste DEPOIS das ACLs ---
+$ lxc exec teste-dev -- bash -c 'timeout 3 bash -c "echo > /dev/tcp/10.10.10.12/5432" && echo ALCANCOU || echo BLOQUEADO'
+BLOQUEADO
+$ lxc exec app -- curl -sI https://deb.debian.org | head -1
+HTTP/2 200
+$ curl -sI http://192.168.1.30:8081 | head -1
+HTTP/1.1 200 OK
+$ lxc network acl show acl-prod
+name: acl-prod
+description: ""
+egress:
+- action: drop
+  destination: 10.10.20.0/24
+  state: enabled
+ingress:
+- action: drop
+  source: 10.10.20.0/24
+  state: enabled
+config: {}
+used_by:
+- /1.0/networks/net-prod

@@ -1,0 +1,15 @@
+$ uname -r
+5.15.0-119-generic
+$ ls -l /dev/kvm
+ls: cannot access '/dev/kvm': No such file or directory
+$ lxc info | grep driver
+- storage_driver_ceph
+- firewall_driver
+- server_instance_driver_operational
+- server_supported_storage_drivers
+  driver: lxc
+  driver_version: 5.0.3
+  storage_supported_drivers:
+$ lxc launch ubuntu:24.04 vm-teste --vm -c limits.memory=1GiB
+Creating vm-teste
+Error: Failed instance creation: KVM support is missing (no /dev/kvm)

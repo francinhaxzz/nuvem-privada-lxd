@@ -1,0 +1,4 @@
+$ lxc exec app -- curl -s http://localhost:8000/api/saude
+{"status":"ok"}
+$ lxc exec app -- uname -r
+5.15.0-119-generic

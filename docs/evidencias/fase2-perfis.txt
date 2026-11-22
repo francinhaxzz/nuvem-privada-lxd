@@ -1,0 +1,53 @@
+$ lxc profile show perfil-base
+config:
+  limits.cpu: "1"
+  limits.memory: 512MiB
+description: Limites e dispositivos padrao da equipe
+devices:
+  eth0:
+    name: eth0
+    network: net-prod
+    type: nic
+  root:
+    path: /
+    pool: pool-final
+    type: disk
+name: perfil-base
+used_by: []
+$ lxc profile show perfil-proxy
+config:
+  cloud-init.user-data: |
+    #cloud-config
+    package_update: true
+    packages:
+      - nginx
+      - openssl
+description: Papel proxy reverso e frontend estatico
+devices: {}
+name: perfil-proxy
+used_by: []
+$ lxc profile show perfil-app
+config:
+  cloud-init.user-data: |
+    #cloud-config
+    package_update: true
+    packages:
+      - python3-venv
+      - python3-pip
+      - curl
+description: Papel API Python
+devices: {}
+name: perfil-app
+used_by: []
+$ lxc profile show perfil-db
+config:
+  cloud-init.user-data: |
+    #cloud-config
+    package_update: true
+    packages:
+      - postgresql
+  limits.memory: 1GiB
+description: Papel banco PostgreSQL
+devices: {}
+name: perfil-db
+used_by: []

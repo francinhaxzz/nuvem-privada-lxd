@@ -1,0 +1,6 @@
+$ lxc list aluno-a: --project projeto-a
++------+-------+------+------+------+-----------+
+| NAME | STATE | IPV4 | IPV6 | TYPE | SNAPSHOTS |
++------+-------+------+------+------+-----------+
+$ lxc list aluno-a: --project projeto-b
+Error: Project "projeto-b" not found

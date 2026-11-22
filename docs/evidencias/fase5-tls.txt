@@ -1,0 +1,23 @@
+$ curl --cacert conf/tls/ca.crt --resolve servico.lab:8444:127.0.0.1 -sI https://servico.lab:8444 | head -1
+HTTP/1.1 200 OK
+$ openssl x509 -in conf/tls/servico.crt -noout -text | head -20
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            4b:91:c8:23:7f:e4:19:0a:d2:55:1c:8e:3b:a4:70:11:9c:2d:0e:41
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: CN = CA da Equipe 1
+        Validity
+            Not Before: Nov 22 19:21:00 2026 GMT
+            Not After : Nov 22 19:21:00 2027 GMT
+        Subject: CN = servico.lab
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:c7:89:4a:2b:1d:93:5f:74:a1:6c:2e:80:19:3d:
+                    b4:5e:12:9a:7c:08:3f:d1:62:4b:9e:05:71:c3:88:
+        X509v3 extensions:
+            X509v3 Subject Alternative Name:
+                DNS:servico.lab, IP Address:192.168.1.30, IP Address:127.0.0.1

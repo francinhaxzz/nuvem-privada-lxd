@@ -1,0 +1,19 @@
+$ lxc storage volume list pool-final
++--------+------------+-------------+--------------+---------+
+|  TYPE  |    NAME    | DESCRIPTION | CONTENT-TYPE | USED BY |
++--------+------------+-------------+--------------+---------+
+| custom | dev-vol-db |             | filesystem   | 0       |
++--------+------------+-------------+--------------+---------+
+| custom | vol-db     |             | filesystem   | 0       |
++--------+------------+-------------+--------------+---------+
+$ lxc storage info pool-final
+info:
+  description: ""
+  driver: dir
+  name: pool-final
+  space used: 2.82GiB
+  total space: 78.19GiB
+used by:
+  volumes:
+  - dev-vol-db (project "final-equipe1")
+  - vol-db (project "final-equipe1")

@@ -1,0 +1,5 @@
+description: Perfil medio (Aula 5 - 2 vCPUs e 2GB RAM)
+config:
+  limits.cpu: "2"
+  limits.memory: 2GB
+devices: {}

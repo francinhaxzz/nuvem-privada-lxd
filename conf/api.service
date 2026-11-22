@@ -1,0 +1,13 @@
+[Unit]
+Description=API de tarefas
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/api
+Environment=DB_HOST=10.10.10.12
+Environment=DB_PASS=Equipe1Pass2026
+ExecStart=/opt/api/venv/bin/uvicorn api:app --host 0.0.0.0 --port 8000
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

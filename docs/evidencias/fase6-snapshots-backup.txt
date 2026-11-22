@@ -1,0 +1,46 @@
+$ lxc info db | sed -n '/Snapshots/,$p'
+Snapshots:
++----------------+----------------------+------------+----------+
+|      NAME      |       TAKEN AT       | EXPIRES AT | STATEFUL |
++----------------+----------------------+------------+----------+
+| snap-instancia | 2026/11/22 19:25 UTC |            | NO       |
++----------------+----------------------+------------+----------+
+$ lxc storage volume info pool-final vol-db | sed -n '/Snapshots/,$p'
+Snapshots:
+  snap-volume (taken at 2026/11/22 19:25 UTC) (stateless)
+
+--- 6.2 Momento 1: Antes do desastre ---
+[{"id":1,"titulo":"Configurar redes net-prod e net-dev no LXD","feita":false},{"id":2,"titulo":"Testar persistencia do volume vol-db no PostgreSQL","feita":false},{"id":3,"titulo":"Ativar TLS e isolamento com Network ACLs","feita":false}]
+
+--- 6.2 Momento 2: Simulando desastre (DELETE todas as tarefas) ---
+{"apagada":1}
+{"apagada":2}
+{"apagada":3}
+Tarefas apos o desastre:
+[]
+
+--- 6.2 Momento 3: Restaurando snapshot snap-volume (lxc stop db && lxc storage volume restore pool-final vol-db snap-volume && lxc start db) ---
+Tarefas apos a restauracao:
+[{"id":1,"titulo":"Configurar redes net-prod e net-dev no LXD","feita":false},{"id":2,"titulo":"Testar persistencia do volume vol-db no PostgreSQL","feita":false},{"id":3,"titulo":"Ativar TLS e isolamento com Network ACLs","feita":false}]
+
+--- 6.3 Backup para arquivo e importacao ---
+$ ls -lh ~/backup
+total 445M
+-rw-rw-r-- 1 cloud cloud 427M Nov 22 19:27 db.tar.gz
+-rw-rw-r-- 1 cloud cloud  18M Nov 22 19:27 vol-db.tar.gz
+$ lxc import ~/backup/db.tar.gz db-restaurado
+$ lxc storage volume import pool-final ~/backup/vol-db.tar.gz vol-db-restaurado
+$ lxc list db-restaurado
++---------------+---------+------+------+-----------+-----------+
+|     NAME      |  STATE  | IPV4 | IPV6 |   TYPE    | SNAPSHOTS |
++---------------+---------+------+------+-----------+-----------+
+| db-restaurado | STOPPED |      |      | CONTAINER | 1         |
++---------------+---------+------+------+-----------+-----------+
+$ lxc storage volume list pool-final
++-----------------+-------------------+-------------+--------------+---------+
+|      TYPE       |       NAME        | DESCRIPTION | CONTENT-TYPE | USED BY |
++-----------------+-------------------+-------------+--------------+---------+
+| custom          | vol-db            |             | filesystem   | 1       |
++-----------------+-------------------+-------------+--------------+---------+
+| custom          | vol-db-restaurado |             | filesystem   | 0       |
++-----------------+-------------------+-------------+--------------+---------+

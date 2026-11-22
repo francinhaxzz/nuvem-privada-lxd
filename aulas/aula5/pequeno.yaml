@@ -1,0 +1,5 @@
+description: Perfil pequeno (Aula 5 - 1 vCPU e 512MB RAM)
+config:
+  limits.cpu: "1"
+  limits.memory: 512MB
+devices: {}

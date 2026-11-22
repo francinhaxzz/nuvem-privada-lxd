@@ -1,13 +1,19 @@
 --- 4.2 Teste ANTES das ACLs ---
+Creating teste-dev
+Retrieving image: Unpack: 100% (1.08GB/s)                                          Retrieving image: Unpack: 100% (1.08GB/s)                                          Device eth0 overridden for teste-dev
 $ lxc exec teste-dev -- bash -c 'timeout 3 bash -c "echo > /dev/tcp/10.10.10.12/5432" && echo ALCANCOU || echo BLOQUEADO'
 ALCANCOU
-
+--- 4.3 Aplicando ACLs acl-prod e acl-dev ---
+Network ACL acl-prod deleted
+Network ACL acl-dev deleted
+Network ACL acl-prod created
+Network ACL acl-dev created
 --- 4.4 Teste DEPOIS das ACLs ---
 $ lxc exec teste-dev -- bash -c 'timeout 3 bash -c "echo > /dev/tcp/10.10.10.12/5432" && echo ALCANCOU || echo BLOQUEADO'
 BLOQUEADO
 $ lxc exec app -- curl -sI https://deb.debian.org | head -1
-HTTP/2 200
-$ curl -sI http://192.168.1.30:8081 | head -1
+HTTP/2 200 
+$ curl -sI http://192.168.56.10:8081 | head -1
 HTTP/1.1 200 OK
 $ lxc network acl show acl-prod
 name: acl-prod

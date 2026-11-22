@@ -2,49 +2,54 @@ $ lxc exec app -- nproc
 1
 $ lxc exec app -- free -m
                total        used        free      shared  buff/cache   available
-Mem:             512          84         381           0          47         428
+Mem:             512          96         185           0         229         415
 Swap:              0           0           0
-
 --- Painel ANTES da carga de CPU ---
-Sun Nov 22 19:32:10 UTC 2026
+Sun Nov 22 20:57:32 UTC 2026
 +-----------+---------+--------------------+--------------+------------+-----------+
 |   NAME    |  STATE  |        IPV4        | MEMORY USAGE | DISK USAGE | CPU USAGE |
 +-----------+---------+--------------------+--------------+------------+-----------+
-| app       | RUNNING | 10.10.10.11 (eth0) | 84.12MiB     | 1.48GiB    | 6s        |
+| app       | RUNNING | 10.10.10.11 (eth0) | 325.71MiB    |            | 42s       |
 +-----------+---------+--------------------+--------------+------------+-----------+
-| db        | RUNNING | 10.10.10.12 (eth0) | 112.45MiB    | 1.62GiB    | 8s        |
+| db        | RUNNING | 10.10.10.12 (eth0) | 543.07MiB    |            | 29s       |
 +-----------+---------+--------------------+--------------+------------+-----------+
-| dev-app   | RUNNING | 10.10.20.11 (eth0) | 83.90MiB     | 1.48GiB    | 5s        |
+| dev-app   | RUNNING | 10.10.20.11 (eth0) | 351.71MiB    |            | 43s       |
 +-----------+---------+--------------------+--------------+------------+-----------+
-| dev-db    | RUNNING | 10.10.20.12 (eth0) | 110.18MiB    | 1.62GiB    | 7s        |
+| dev-db    | RUNNING | 10.10.20.12 (eth0) | 547.14MiB    |            | 30s       |
 +-----------+---------+--------------------+--------------+------------+-----------+
-| dev-proxy | RUNNING | 10.10.20.10 (eth0) | 42.15MiB     | 1.35GiB    | 3s        |
+| dev-proxy | RUNNING | 10.10.20.10 (eth0) | 296.98MiB    |            | 25s       |
 +-----------+---------+--------------------+--------------+------------+-----------+
-| proxy     | RUNNING | 10.10.10.10 (eth0) | 43.02MiB     | 1.35GiB    | 4s        |
+| proxy     | RUNNING | 10.10.10.10 (eth0) | 237.65MiB    |            | 23s       |
 +-----------+---------+--------------------+--------------+------------+-----------+
 
 Métricas brutas (amostra):
-lxd_cpu_seconds_total{cpu="0",mode="system",name="app",project="final-equipe1",type="container"} 2.14
-lxd_cpu_seconds_total{cpu="0",mode="user",name="app",project="final-equipe1",type="container"} 4.02
-lxd_memory_MemAvailable_bytes{name="app",project="final-equipe1",type="container"} 4.48790528e+08
-lxd_filesystem_avail_bytes{device="/dev/sda2",fstype="ext4",mountpoint="/",name="app",project="final-equipe1",type="container"} 7.7215830016e+10
-
---- Gerando carga de CPU por 20 segundos em app (lxc exec app -- timeout 20 sh -c 'yes > /dev/null') ---
-
+# HELP lxd_cpu_seconds_total The total number of CPU time used in seconds.
+# TYPE lxd_cpu_seconds_total counter
+lxd_cpu_seconds_total{cpu="0",mode="system",name="dev-db",project="final-equipe1",type="container"} 7.830581
+lxd_cpu_seconds_total{cpu="0",mode="user",name="dev-db",project="final-equipe1",type="container"} 22.594992
+lxd_cpu_seconds_total{cpu="0",mode="system",name="dev-app",project="final-equipe1",type="container"} 11.229001
+lxd_cpu_seconds_total{cpu="0",mode="user",name="dev-app",project="final-equipe1",type="container"} 32.328547
+lxd_cpu_seconds_total{cpu="0",mode="system",name="app",project="final-equipe1",type="container"} 10.842067
+lxd_cpu_seconds_total{cpu="0",mode="user",name="app",project="final-equipe1",type="container"} 32.03833
+lxd_cpu_seconds_total{cpu="0",mode="system",name="db",project="final-equipe1",type="container"} 7.927339
+lxd_cpu_seconds_total{cpu="0",mode="user",name="db",project="final-equipe1",type="container"} 21.947547
+lxd_cpu_seconds_total{cpu="0",mode="system",name="proxy",project="final-equipe1",type="container"} 4.737677
+lxd_cpu_seconds_total{cpu="0",mode="user",name="proxy",project="final-equipe1",type="container"} 18.677226
+--- Gerando carga de CPU por 20 segundos em app ---
 --- Painel DEPOIS da carga de CPU ---
-Sun Nov 22 19:32:31 UTC 2026
+Sun Nov 22 20:57:53 UTC 2026
 +-----------+---------+--------------------+--------------+------------+-----------+
 |   NAME    |  STATE  |        IPV4        | MEMORY USAGE | DISK USAGE | CPU USAGE |
 +-----------+---------+--------------------+--------------+------------+-----------+
-| app       | RUNNING | 10.10.10.11 (eth0) | 84.60MiB     | 1.48GiB    | 26s       |
+| app       | RUNNING | 10.10.10.11 (eth0) | 325.72MiB    |            | 62s       |
 +-----------+---------+--------------------+--------------+------------+-----------+
-| db        | RUNNING | 10.10.10.12 (eth0) | 112.45MiB    | 1.62GiB    | 8s        |
+| db        | RUNNING | 10.10.10.12 (eth0) | 544.55MiB    |            | 29s       |
 +-----------+---------+--------------------+--------------+------------+-----------+
-| dev-app   | RUNNING | 10.10.20.11 (eth0) | 83.90MiB     | 1.48GiB    | 5s        |
+| dev-app   | RUNNING | 10.10.20.11 (eth0) | 351.71MiB    |            | 43s       |
 +-----------+---------+--------------------+--------------+------------+-----------+
-| dev-db    | RUNNING | 10.10.20.12 (eth0) | 110.18MiB    | 1.62GiB    | 7s        |
+| dev-db    | RUNNING | 10.10.20.12 (eth0) | 547.14MiB    |            | 30s       |
 +-----------+---------+--------------------+--------------+------------+-----------+
-| dev-proxy | RUNNING | 10.10.20.10 (eth0) | 42.15MiB     | 1.35GiB    | 3s        |
+| dev-proxy | RUNNING | 10.10.20.10 (eth0) | 296.98MiB    |            | 25s       |
 +-----------+---------+--------------------+--------------+------------+-----------+
-| proxy     | RUNNING | 10.10.10.10 (eth0) | 43.02MiB     | 1.35GiB    | 4s        |
+| proxy     | RUNNING | 10.10.10.10 (eth0) | 237.65MiB    |            | 23s       |
 +-----------+---------+--------------------+--------------+------------+-----------+

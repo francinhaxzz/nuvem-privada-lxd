@@ -1,9 +1,36 @@
 $ ENV=prod ./scripts/destroy.sh --volumes
 Instâncias removidas. Os volumes foram mantidos (use --volumes para apagá-los).
 $ ENV=prod ./scripts/deploy.sh
-Ambiente prod no ar: http://192.168.1.30:8081 e https://192.168.1.30:8444
+Storage volume vol-db created
+Creating db
+Retrieving image: Unpack: 100% (934.24MB/s)                                            Retrieving image: Unpack: 100% (934.24MB/s)                                            Device eth0 overridden for db
+Device dados added to db
+Pushing /var/lib/snapd/hostfs/home/cloud/projeto-final/conf/config-postgres.sh to /root/config-postgres.sh: 100% (2.65GB/s)                                                                                                                            CREATE ROLE
+CREATE DATABASE
+CREATE TABLE
+ALTER TABLE
+Creating app
+Retrieving image: Unpack: 100% (1.14GB/s)                                          Retrieving image: Unpack: 100% (1.14GB/s)                                          Device eth0 overridden for app
+Pushing /var/lib/snapd/hostfs/home/cloud/projeto-final/conf/api.py to /root/api.py: 100% (4.24GB/s)                                                                                                    Pushing /var/lib/snapd/hostfs/home/cloud/projeto-final/conf/api.service to /root/api.service: 100% (1.01GB/s)                                                                                                              Pushing /var/lib/snapd/hostfs/home/cloud/projeto-final/conf/instala-api.sh to /root/instala-api.sh: 100% (1.97GB/s)                                                                                                                    Creating proxy
+Retrieving image: Unpack: 100% (1.42GB/s)                                          Retrieving image: Unpack: 100% (1.42GB/s)                                          Device eth0 overridden for proxy
+Pushing /var/lib/snapd/hostfs/home/cloud/projeto-final/conf/index.html to /var/www/html/index.html: 100% (2.02GB/s)                                                                                                                    Pushing /var/lib/snapd/hostfs/home/cloud/projeto-final/conf/tls/servico.crt to /etc/ssl/certs/servico.crt: 100% (5.00GB/s)                                                                                                                           Pushing /var/lib/snapd/hostfs/home/cloud/projeto-final/conf/tls/servico.key to /etc/ssl/private/servico.key: 100% (6.53GB/s)                                                                                                                             Pushing /var/lib/snapd/hostfs/tmp/nginx-prod.conf to /etc/nginx/sites-available/servico: 100% (2.39GB/s)                                                                                                         Device porta-http added to proxy
+Device porta-https added to proxy
+Ambiente prod no ar: http://192.168.56.10:8081 e https://192.168.56.10:8444
 $ ENV=dev ./scripts/deploy.sh
-Ambiente dev no ar: http://192.168.1.30:8082 e https://192.168.1.30:8445
+Creating dev-db
+Retrieving image: Unpack: 100% (1.14GB/s)                                          Retrieving image: Unpack: 100% (1.14GB/s)                                          Device eth0 overridden for dev-db
+Device dados added to dev-db
+Pushing /var/lib/snapd/hostfs/home/cloud/projeto-final/conf/config-postgres.sh to /root/config-postgres.sh: 100% (4.49GB/s)                                                                                                                            CREATE ROLE
+CREATE DATABASE
+CREATE TABLE
+ALTER TABLE
+Creating dev-app
+Retrieving image: Unpack: 100% (1.03GB/s)                                          Retrieving image: Unpack: 100% (1.03GB/s)                                          Device eth0 overridden for dev-app
+Pushing /var/lib/snapd/hostfs/home/cloud/projeto-final/conf/api.py to /root/api.py: 100% (4.67GB/s)                                                                                                    Pushing /var/lib/snapd/hostfs/home/cloud/projeto-final/conf/api.service to /root/api.service: 100% (524.95MB/s)                                                                                                                Pushing /var/lib/snapd/hostfs/home/cloud/projeto-final/conf/instala-api.sh to /root/instala-api.sh: 100% (1.47GB/s)                                                                                                                    Creating dev-proxy
+Retrieving image: Unpack: 100% (1.21GB/s)                                          Retrieving image: Unpack: 100% (1.21GB/s)                                          Device eth0 overridden for dev-proxy
+Pushing /var/lib/snapd/hostfs/home/cloud/projeto-final/conf/index.html to /var/www/html/index.html: 100% (736.94MB/s)                                                                                                                      Pushing /var/lib/snapd/hostfs/home/cloud/projeto-final/conf/tls/servico.crt to /etc/ssl/certs/servico.crt: 100% (4.84GB/s)                                                                                                                           Pushing /var/lib/snapd/hostfs/home/cloud/projeto-final/conf/tls/servico.key to /etc/ssl/private/servico.key: 100% (3.54GB/s)                                                                                                                             Pushing /var/lib/snapd/hostfs/tmp/nginx-dev.conf to /etc/nginx/sites-available/servico: 100% (2.60GB/s)                                                                                                        Device porta-http added to dev-proxy
+Device porta-https added to dev-proxy
+Ambiente dev no ar: http://192.168.56.10:8082 e https://192.168.56.10:8445
 $ lxc list
 +-----------+---------+--------------------+------+-----------+-----------+
 |   NAME    |  STATE  |        IPV4        | IPV6 |   TYPE    | SNAPSHOTS |
@@ -20,7 +47,7 @@ $ lxc list
 +-----------+---------+--------------------+------+-----------+-----------+
 | proxy     | RUNNING | 10.10.10.10 (eth0) |      | CONTAINER | 0         |
 +-----------+---------+--------------------+------+-----------+-----------+
-$ curl -sk https://192.168.1.30:8444/api/tarefas
-[{"id":1,"titulo":"Tarefa PROD reconstruida via deploy.sh","feita":false}]
-$ curl -sk https://192.168.1.30:8445/api/tarefas
-[{"id":1,"titulo":"Tarefa DEV reconstruida via deploy.sh","feita":false}]
+$ curl -sk https://192.168.56.10:8444/api/tarefas
+[]
+$ curl -sk https://192.168.56.10:8445/api/tarefas
+[]

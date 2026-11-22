@@ -1,11 +1,8 @@
 $ lxc config device list proxy
 eth0
 porta-http
-porta-https
 $ lxc config device list db
 dados
 eth0
-$ sudo ss -tlnp | grep -E ':(8081|8443|8444|3306|5432)'
-LISTEN 0      4096         0.0.0.0:8081       0.0.0.0:*    users:(("lxd",pid=2415,fd=9))
-LISTEN 0      4096         0.0.0.0:8444       0.0.0.0:*    users:(("lxd",pid=2438,fd=9))
-LISTEN 0      4096               *:8443             *:*    users:(("lxd",pid=1755,fd=25))
+$ sudo ss -tlnp | grep -E ':(8081|8443|3306|5432)'
+LISTEN 0      4096                          *:8081            *:*    users:(("lxd",pid=15278,fd=8),("lxd",pid=15278,fd=3))

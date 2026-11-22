@@ -1,3 +1,4 @@
+Pushing /var/lib/snapd/hostfs/home/cloud/projeto-final/conf/tls/servico.crt to /etc/ssl/certs/servico.crt: 100% (5.02GB/s)                                                                                                                           Pushing /var/lib/snapd/hostfs/home/cloud/projeto-final/conf/tls/servico.key to /etc/ssl/private/servico.key: 100% (4.85GB/s)                                                                                                                             Pushing /var/lib/snapd/hostfs/home/cloud/projeto-final/conf/nginx-servico.conf to /etc/nginx/sites-available/servico: 100% (915.64MB/s)                                                                                                                                        Device porta-https added to proxy
 $ curl --cacert conf/tls/ca.crt --resolve servico.lab:8444:127.0.0.1 -sI https://servico.lab:8444 | head -1
 HTTP/1.1 200 OK
 $ openssl x509 -in conf/tls/servico.crt -noout -text | head -20
@@ -5,19 +6,19 @@ Certificate:
     Data:
         Version: 3 (0x2)
         Serial Number:
-            4b:91:c8:23:7f:e4:19:0a:d2:55:1c:8e:3b:a4:70:11:9c:2d:0e:41
+            3c:fb:e4:d9:4c:4b:49:80:e9:05:a7:f1:64:e2:82:cd:15:82:c8:7c
         Signature Algorithm: sha256WithRSAEncryption
         Issuer: CN = CA da Equipe 1
         Validity
-            Not Before: Nov 22 19:21:00 2026 GMT
-            Not After : Nov 22 19:21:00 2027 GMT
+            Not Before: Nov 22 20:46:38 2026 GMT
+            Not After : Nov 22 20:46:38 2027 GMT
         Subject: CN = servico.lab
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 Public-Key: (2048 bit)
                 Modulus:
-                    00:c7:89:4a:2b:1d:93:5f:74:a1:6c:2e:80:19:3d:
-                    b4:5e:12:9a:7c:08:3f:d1:62:4b:9e:05:71:c3:88:
-        X509v3 extensions:
-            X509v3 Subject Alternative Name:
-                DNS:servico.lab, IP Address:192.168.1.30, IP Address:127.0.0.1
+                    00:96:8e:38:13:95:0a:bc:c2:af:1b:10:29:3c:55:
+                    a4:b2:9c:9d:cb:05:9e:b9:0e:1e:0f:15:dd:f6:f8:
+                    ca:d3:fa:8f:de:3b:21:82:e6:80:2c:a4:d6:40:0d:
+                    05:cd:5c:6e:ab:32:c5:f8:13:d2:2c:fb:c7:09:07:
+                    5b:c5:09:14:fa:db:50:f9:68:91:0c:a5:1b:f2:d2:

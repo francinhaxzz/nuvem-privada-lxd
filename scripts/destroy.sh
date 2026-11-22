@@ -5,7 +5,7 @@ ENV="${ENV:-prod}"
 for i in proxy app db; do lxc delete -f "${PREFIXO}$i" 2>/dev/null || true; done
 echo "Instâncias removidas. Os volumes foram mantidos (use --volumes para apagá-los)."
 if [ "${1:-}" = "--volumes" ]; then
-  for v in $(lxc storage volume list pool-final -c n --format csv | grep "^${PREFIXO}vol-" || true); do
-    lxc storage volume delete pool-final "$v"
+  for v in $(lxc storage volume list pool-final -c n --format csv | grep "^${PREFIXO}vol-" | grep -v "/" || true); do
+    lxc storage volume delete pool-final "$v" 2>/dev/null || true
   done
 fi

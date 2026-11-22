@@ -8,14 +8,22 @@ $ lxc list
 | proxy | RUNNING | 10.10.10.10 (eth0) |      | CONTAINER | 0         |
 +-------+---------+--------------------+------+-----------+-----------+
 $ lxc storage volume list pool-final
-+-----------------+-----------+-------------+--------------+---------+
-|      TYPE       |   NAME    | DESCRIPTION | CONTENT-TYPE | USED BY |
-+-----------------+-----------+-------------+--------------+---------+
-| container       | app       |             | filesystem   | 1       |
-+-----------------+-----------+-------------+--------------+---------+
-| container       | proxy     |             | filesystem   | 1       |
-+-----------------+-----------+-------------+--------------+---------+
-| custom          | vol-db    |             | filesystem   | 0       |
-+-----------------+-----------+-------------+--------------+---------+
-$ diff docs/evidencias/antes.json docs/evidencias/depois.json && echo "DADOS PRESERVADOS"
++-----------+------------+-------------+--------------+---------+
+|   TYPE    |    NAME    | DESCRIPTION | CONTENT-TYPE | USED BY |
++-----------+------------+-------------+--------------+---------+
+| container | app        |             | filesystem   | 1       |
++-----------+------------+-------------+--------------+---------+
+| container | proxy      |             | filesystem   | 1       |
++-----------+------------+-------------+--------------+---------+
+| custom    | dev-vol-db |             | filesystem   | 0       |
++-----------+------------+-------------+--------------+---------+
+| custom    | vol-db     |             | filesystem   | 0       |
++-----------+------------+-------------+--------------+---------+
+Creating db
+Retrieving image: Unpack: 100% (1.03GB/s)                                          Retrieving image: Unpack: 100% (1.03GB/s)                                          Device eth0 overridden for db
+Device dados added to db
+...............................................................................................................................................................................status: done
+Pushing /var/lib/snapd/hostfs/home/cloud/projeto-final/conf/config-postgres.sh to /root/config-postgres.sh: 100% (3.23GB/s)                                                                                                                            CREATE TABLE
+ALTER TABLE
+$ diff docs/evidencias/antes.json docs/evidencias/depois.json && echo DADOS PRESERVADOS
 DADOS PRESERVADOS

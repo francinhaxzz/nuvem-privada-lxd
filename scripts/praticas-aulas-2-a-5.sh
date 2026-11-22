@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Script automatizado para executar as práticas das Aulas 2, 3, 4 e 5 na VM cloud-lab
 set -euo pipefail
+exec < /dev/null
 
 mkdir -p docs/evidencias
 

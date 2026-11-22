@@ -1,4 +1,4 @@
-$ curl -s http://192.168.1.30:8081/api/tarefas
+$ curl -s http://192.168.56.10:8081/api/tarefas
 [{"id":1,"titulo":"Configurar redes net-prod e net-dev no LXD","feita":false},{"id":2,"titulo":"Testar persistencia do volume vol-db no PostgreSQL","feita":false},{"id":3,"titulo":"Ativar TLS e isolamento com Network ACLs","feita":false}]
 $ lxc list
 +-------+---------+--------------------+------+-----------+-----------+

@@ -1,13 +1,19 @@
 #!/usr/bin/env bash
 # Uso: ENV=prod ./scripts/deploy.sh ou ENV=dev ./scripts/deploy.sh
 set -euo pipefail
+exec < /dev/null
 
 ENV="${ENV:-prod}"
 PROJETO="${PROJETO:-final-equipe1}"
 POOL="pool-final"
-IMAGEM="ubuntu:24.04"
+if lxc image info ubuntu-24.04 >/dev/null 2>&1; then
+  IMAGEM="ubuntu-24.04"
+else
+  IMAGEM="ubuntu:24.04"
+fi
 DB_PASS="${DB_PASS:-Equipe1Pass2026}"
-IP_VM=$(ip -br addr show scope global | awk '!/^(net-|lxdbr|lo)/ {split($3,a,"/"); print a[1]; exit}')
+IP_VM=$(ip -4 -br addr show scope global | awk '/192\.168\./ {split($3,a,"/"); print a[1]; exit}')
+[ -z "$IP_VM" ] && IP_VM=$(ip -4 -br addr show scope global | awk '!/^(net-|lxdbr|lo)/ {split($3,a,"/"); print a[1]; exit}')
 IP_VM="${IP_VM:-127.0.0.1}"
 
 if [ "$ENV" = "prod" ]; then

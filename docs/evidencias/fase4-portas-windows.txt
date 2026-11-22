@@ -1,20 +1,41 @@
-PS C:\Users\T-GAMER> Test-NetConnection 192.168.1.30 -Port 8081
+﻿PS> Test-NetConnection 192.168.56.10 -Port 8081
 
-ComputerName     : 192.168.1.30
-RemoteAddress    : 192.168.1.30
+
+ComputerName     : 192.168.56.10
+RemoteAddress    : 192.168.56.10
 RemotePort       : 8081
-InterfaceAlias   : Wi-Fi
-SourceAddress    : 192.168.1.2
+InterfaceAlias   : Ethernet
+SourceAddress    : 192.168.56.1
 TcpTestSucceeded : True
 
-PS C:\Users\T-GAMER> Test-NetConnection 192.168.1.30 -Port 5432
-WARNING: TCP connect to (192.168.1.30 : 5432) failed
 
-ComputerName           : 192.168.1.30
-RemoteAddress          : 192.168.1.30
+
+
+PS> Test-NetConnection 192.168.56.10 -Port 8444
+
+
+ComputerName     : 192.168.56.10
+RemoteAddress    : 192.168.56.10
+RemotePort       : 8444
+InterfaceAlias   : Ethernet
+SourceAddress    : 192.168.56.1
+TcpTestSucceeded : True
+
+
+
+
+PS> Test-NetConnection 192.168.56.10 -Port 5432
+
+
+ComputerName           : 192.168.56.10
+RemoteAddress          : 192.168.56.10
 RemotePort             : 5432
-InterfaceAlias         : Wi-Fi
-SourceAddress          : 192.168.1.2
+InterfaceAlias         : Ethernet
+SourceAddress          : 192.168.56.1
 PingSucceeded          : True
-PingReplyDetails (RTT) : 1 ms
+PingReplyDetails (RTT) : 0 ms
 TcpTestSucceeded       : False
+
+
+
+

@@ -13,7 +13,8 @@ devices:
     pool: pool-final
     type: disk
 name: perfil-base
-used_by: []
+used_by:
+- /1.0/instances/db?project=final-equipe1
 $ lxc profile show perfil-proxy
 config:
   cloud-init.user-data: |
@@ -50,4 +51,5 @@ config:
 description: Papel banco PostgreSQL
 devices: {}
 name: perfil-db
-used_by: []
+used_by:
+- /1.0/instances/db?project=final-equipe1

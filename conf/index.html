@@ -2,17 +2,21 @@
 <html lang="pt-BR">
 <head><meta charset="utf-8"><title>Tarefas</title></head>
 <body>
+  <!-- campo de texto para digitar o título da nova tarefa, botão para adicionar a tarefa e lista para exibir as tarefas -->
   <h1>Tarefas</h1>
   <input id="titulo" placeholder="Nova tarefa">
   <button onclick="criar()">Adicionar</button>
   <ul id="lista"></ul>
+<!-- script para carregar as tarefas do servidor e exibi-las na lista, e para criar novas tarefas -->
   <script>
+    <!-- script para carregar as tarefas do servidor e exibi-las na lista -->
     async function carregar() {
       const r = await fetch('/api/tarefas');
       const tarefas = await r.json();
       document.getElementById('lista').innerHTML = tarefas
         .map(t => '<li>' + t.titulo + (t.feita ? ' (feita)' : '') + '</li>').join('');
     }
+    <!-- script para criar novas tarefas -->
     async function criar() {
       const campo = document.getElementById('titulo');
       await fetch('/api/tarefas', {method: 'POST', body: JSON.stringify({titulo: campo.value})});

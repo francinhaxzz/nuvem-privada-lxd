@@ -122,3 +122,26 @@ HTTPS no Proxy: Certificado servico.crt assinado pela CA local (conf/tls/ca.crt,
 3. **Reiniciar a instância do banco** com `lxc start db` e aguardar o serviço PostgreSQL subir na porta `5432`.
 4. **Para restauração a partir de arquivos exportados (`tar.gz`)**, importar a instância com `lxc import ~/backup/db.tar.gz db-restaurado` e o volume com `lxc storage volume import pool-final ~/backup/vol-db.tar.gz vol-db-restaurado`.
 5. **Validar a integridade dos dados** consultando `curl -k https://<IP-DA-VM>:8444/api/tarefas` e confirmando o retorno das tarefas anteriores ao incidente.
+
+---
+
+## 7. Como Importar e Executar a Máquina Virtual (VirtualBox)
+
+### Opção A: Importação via Appliance OVA (`cloud-lab.ova`)
+1. No computador onde for executar, abra o **Oracle VM VirtualBox**.
+2. Clique no menu superior **Arquivo** (`File`) → **Importar Appliance** (`Import Appliance`) (ou atalho `Ctrl + I`).
+3. Selecione o arquivo **`cloud-lab.ova`** (armazenado no pendrive ou disco local).
+4. Clique em **Avançar** e depois em **Importar / Finalizar**.
+5. Selecione a VM `cloud-lab` na lista e clique em **Iniciar**.
+6. **Credenciais e Endereços de Acesso:**
+   - Usuário: `cloud` | Senha: `cloud`
+   - Acesso SSH: `ssh cloud@192.168.56.10`
+   - Acesso web via navegador: `https://192.168.56.10:8444` (Produção) e `https://192.168.56.10:8445` (Desenvolvimento)
+
+### Opção B: Provisionamento Automático via Vagrantfile
+1. Com o VirtualBox e o Vagrant instalados na máquina, abra o terminal na pasta raiz deste repositório.
+2. Execute:
+   ```bash
+   vagrant up
+   ```
+3. O Vagrant provisionará e configurará a VM `cloud-lab` automaticamente com os mapeamentos de rede e portas necessários.
